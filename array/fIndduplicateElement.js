@@ -2,7 +2,7 @@
  * @Author: vishal shinde Vishalshinde@novaklickglobal.com
  * @Date: 2026-03-16 11:50:13
  * @LastEditors: vishal shinde Vishalshinde@novaklickglobal.com
- * @LastEditTime: 2026-03-16 15:49:54
+ * @LastEditTime: 2026-03-18 15:22:15
  * @FilePath: \javascript-code\array\FIndduplicateElement.js
  */
 /*
@@ -25,6 +25,10 @@ function findDuplicates(arr) {
         }
     }
     return duplicate;
+    // complexity of this approach is O(n^2) because we are using two nested loops to compare each element with every other element in the array. 
+    // The outer loop runs n times and the inner loop also runs n times in the worst case, resulting in a time complexity of O(n^2).
+    // O(n)  *  O(n)  =  O(n^2) or includes() method also has a time complexity of O(n) because it needs to iterate through the array to check if the element is already present in the duplicate array.
+    //  so the overall time complexity of this approach is O(n^2) because we are using two nested loops and the includes() method inside the inner loop.
 }
 console.log('duplicate element of given array :', findDuplicates(arr))
 
@@ -55,6 +59,7 @@ let duplicateElement = arr.reduce((acc, curEle)=>{
 },[])
 
 console.log(duplicateEle);
+// time complexity of this approach is O(n^2) because the includes() method has a time complexity of O(n) and it is called for each element in the array, resulting in a total time complexity of O(n^2).
 
 
 // using For loop 
@@ -69,10 +74,12 @@ function findDuplicate(arr){
     return duplicate;
 }
 console.log(findDuplicate(arr));
+// time complexity of this approach is O(n^2) because the includes() method has a time complexity of O(n) and it is called for each element in the array, resulting in a total time complexity of O(n^2).
 
 
-
-// Using an Object / Hash Map (Most Common)
+// ====================================================
+// # find duplicate element using Object / Hash Map (Most Common)
+// ====================================================
 
 function findDuplicateElements(arr){
     const count = {};
@@ -92,3 +99,31 @@ function findDuplicateElements(arr){
 
 }
 console.log(findDuplicateElements(arr));
+// time complexity of this approach is O(n) because we are iterating through the array once to count the occurrences of each element and then iterating through the count object to find the duplicate elements. The overall time complexity is O(n) + O(m), where n is the length of the input array and m is the number of unique elements in the array. In most cases, m will be less than n, so we can consider the time complexity to be O(n).
+
+
+// ====================================================
+// # find duplicate element using Set data structure
+// ====================================================
+
+function findDuplicateElementss(arr){
+    // create a Set to store unique elements and another Set to store duplicate elements
+    let set = new Set();
+    // loop through each element of the array
+    // identify if the element is already in the unique Set. If it is, add it to the duplicate Set. If it is not, add it to the unique Set.
+    let duplicate = new Set();
+
+    for(let ele of arr){
+        // check if the element is already in the unique Set
+        // if it is, add it to the duplicate Set
+        // if it is not, add it to the unique Set
+        if(set.has(ele)){
+            duplicate.add(ele)
+        }else{
+            set.add(ele)
+        }
+    }
+    return [...duplicate]
+}
+console.log(findDuplicateElementss(arr));
+// time complexity of this approach is O(n) because we are iterating through the array once to check for duplicates and add elements to the Set. The operations of adding and checking for elements in a Set have an average time complexity of O(1), so the overall time complexity is O(n).
