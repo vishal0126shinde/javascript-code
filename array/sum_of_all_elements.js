@@ -14,6 +14,13 @@ console.log(sumOfAllElements(arr))
 
 
 
+// using reduce method
+
+let sumOfElement = arr.reduce((acc, curEle)=>{
+    return acc + curEle
+},0)
+console.log(sumOfElement)
+
 
 // ====================================================
 // # Sum of all the element squeare in the given array 
@@ -27,3 +34,7 @@ function sumSquare(arr){
     return squareSum;
 }
 console.log(sumSquare(arr))
+
+
+
+
